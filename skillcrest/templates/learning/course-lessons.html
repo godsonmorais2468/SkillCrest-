@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }} - Course Lessons{% endblock %}
+
+{% block section %}
+<section class="py-5" style="background: #f8f9fa;">
+  <div class="container">
+
+    <!-- Course Title -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">{{ course.title }}</h2>
+      <p class="text-muted">Watch your lessons and start learning 🚀</p>
+    </div>
+
+    {% for lesson in lessons %}
+    <div class="card border-0 shadow-sm mb-5 rounded-4 overflow-hidden">
+
+      <!-- Lesson Header -->
+      <div class="card-body bg-white">
+        <h5 class="fw-bold text-dark mb-3">
+          Lesson {{ forloop.counter }} : {{ lesson.title }}
+        </h5>
+
+        <!-- Video Player -->
+        <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
+          <iframe src="{{ lesson.get_embed_url }}"
+        title="Course Video"
+        allowfullscreen></iframe>
+
+        </div>
+
+      </div>
+    </div>
+    {% empty %}
+      <div class="alert alert-info text-center shadow-sm">
+        No lessons added to this course yet.
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+{% endblock %}

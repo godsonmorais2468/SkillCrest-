@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SkillCrest – The Complete Learning Platform</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    {% load static %}
+
+    <!-- Favicon -->
+    <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f5f7fb; }
+        .navbar { backdrop-filter: blur(10px); background: rgba(255,255,255,0.85) !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .navbar-brand { font-weight: 700; letter-spacing: 0.5px; }
+        .nav-link { font-weight: 500; transition: 0.3s; }
+        .nav-link:hover { color: #0d6efd !important; }
+        .footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
+        .footer h4 { font-weight: 600; margin-bottom: 20px; }
+        .footer a { transition: 0.3s; }
+        .footer a:hover { color: #0d6efd !important; padding-left: 4px; }
+        .btn-primary { background: linear-gradient(45deg, #0d6efd, #2563eb); border: none; }
+        .btn-success { background: linear-gradient(45deg, #10b981, #059669); border: none; }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg shadow-sm sticky-top">
+    <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand text-primary">
+            <i class="fa fa-book me-2"></i>SkillCrest
+        </a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto align-items-lg-center">
+                <a href="{% url 'home' %}" class="nav-link px-3 {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'about' %}" class="nav-link px-3 {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+                <a href="{% url 'course-list' %}" class="nav-link px-3 {% if request.resolver_match.url_name == 'course-list' %}active{% endif %}">Courses</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="btn btn-primary ms-lg-3 px-4">Profile</a>
+                    <a href="{% url 'logout' %}" class="btn btn-danger ms-2 px-4">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary ms-lg-3 px-4">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-success ms-2 px-4">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- 🔔 POPUP MESSAGES -->
+{% if messages %}
+<div style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow"
+         role="alert"
+         style="min-width:280px; border-radius:10px;">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- ================= PAGE CONTENT ================= -->
+{% block section %}{% endblock %}
+
+<!-- ================= FOOTER ================= -->
+<div class="container-fluid footer text-light pt-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <h4 class="text-white">SkillCrest</h4>
+                <p>Premium IT learning platform for mastering real-world tech skills with expert guidance.</p>
+            </div>
+
+            <div class="col-lg-4">
+                <h4 class="text-white">Quick Links</h4>
+                <a class="d-block text-light mb-2" href="#">About Us</a>
+                <a class="d-block text-light mb-2" href="#">Contact</a>
+                <a class="d-block text-light mb-2" href="#">Privacy Policy</a>
+                <a class="d-block text-light mb-2" href="#">Terms</a>
+            </div>
+
+            <div class="col-lg-4">
+                <h4 class="text-white">Newsletter</h4>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your Email">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center py-3 border-top border-secondary">
+        © 2026 <span class="text-primary fw-semibold">SkillCrest</span>. All Rights Reserved.
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ⏳ AUTO HIDE ALERT AFTER 3 SECONDS -->
+<script>
+    setTimeout(function () {
+        let alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            let bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        });
+    }, 3000);
+</script>
+
+</body>
+</html>

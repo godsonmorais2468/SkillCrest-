@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block section %}
+
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #e0f7fa, #c8e6c9); min-height:100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-4 glow-card-login">
+                    <div class="card-body p-5">
+
+                        <h3 class="text-center text-primary fw-bold mb-4 glow-text">Login</h3>
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} glow-alert">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="mb-3 glow-input">
+                                {{ form.username }}
+                            </div>
+
+                            <div class="mb-3 glow-input">
+                                {{ form.password }}
+                            </div>
+
+                            <!-- ✅ LOGIN ROLE -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Login As</label>
+                                {{ form.role }}
+                            </div>
+
+                            <button class="btn btn-primary w-100 fw-bold glow-btn-login mt-3">
+                                Login
+                            </button>
+                        </form>
+
+                        <hr>
+
+                        <p class="text-center">
+                            New to SkillCrest?
+                            <a href="{% url 'signup' %}" class="fw-bold text-success glow-link">
+                                Create Account
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- CSS (Add in base.html or style block) -->
+<style>
+/* Card Glow & Pop */
+.glow-card-login {
+    background: rgba(255,255,255,0.95);
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 12px 35px rgba(0,123,255,0.25);
+    transition: all 0.3s ease;
+}
+.glow-card-login:hover {
+    box-shadow: 0 20px 45px rgba(0,123,255,0.35);
+    transform: translateY(-5px);
+}
+
+/* Headings Glow */
+.glow-text {
+    text-shadow: 0 0 8px #0d6efd, 0 0 15px #6610f2;
+}
+
+/* Input Glow */
+.glow-input input {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(0,123,255,0.2);
+}
+.glow-input input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 12px rgba(13,110,253,0.5);
+    outline: none;
+}
+
+/* Buttons Glow */
+.glow-btn-login {
+    text-shadow: 0 0 5px #0d6efd, 0 0 10px #6610f2;
+    transition: all 0.3s ease;
+}
+.glow-btn-login:hover {
+    box-shadow: 0 0 15px #0d6efd, 0 0 25px #6610f2;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Links Glow */
+.glow-link {
+    text-shadow: 0 0 3px #28a745, 0 0 6px #4caf50;
+    transition: all 0.3s ease;
+}
+.glow-link:hover {
+    text-shadow: 0 0 8px #28a745, 0 0 15px #4caf50;
+}
+
+/* Alerts Glow */
+.glow-alert {
+    box-shadow: 0 0 12px rgba(220,53,69,0.3);
+    border-radius: 0.5rem;
+}
+</style>

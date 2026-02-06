@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay for {{ course.title }}</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body style="font-family:sans-serif;text-align:center;margin-top:60px;">
+
+<h2>Complete Payment for {{ course.title }}</h2>
+<button id="rzp-button1" style="padding:10px 20px;background:#28a745;color:white;border:none;">
+    Pay ₹499
+</button>
+
+<form id="payment-form" action="{% url 'verify-payment' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="razorpay_payment_id" id="payment_id">
+    <input type="hidden" name="razorpay_order_id" value="{{ order_id }}">
+    <input type="hidden" name="razorpay_signature" id="signature">
+</form>
+
+<script>
+var options = {
+    "key": "{{ razorpay_key }}",
+    "amount": "{{ amount }}",
+    "currency": "INR",
+    "name": "SkillCrest",
+    "description": "{{ course.title }}",
+    "order_id": "{{ order_id }}",
+    "handler": function (response){
+        document.getElementById('payment_id').value = response.razorpay_payment_id;
+        document.getElementById('signature').value = response.razorpay_signature;
+        document.getElementById('payment-form').submit();
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+</body>
+</html>

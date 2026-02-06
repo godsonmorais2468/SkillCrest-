@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block section %}
+
+<div
+  style="
+    background: url('/static/assets/img/hero-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+  "
+>
+  <div style="background: linear-gradient(rgba(17,24,39,0.75), rgba(17,24,39,0.85)); min-height: 100vh; backdrop-filter: blur(2px);">
+
+    <!-- HERO -->
+    <div class="container py-5">
+      <div class="row align-items-center" style="min-height:75vh;">
+        <div class="col-lg-8 text-white">
+
+          <span class="badge px-3 py-2 mb-3 fw-semibold"
+                style="background: linear-gradient(45deg,#ffc107,#ff9800); font-size:14px;">
+            🚀 SkillCrest Learning Platform
+          </span>
+
+          <h1 class="display-3 fw-bold mt-3" style="line-height:1.2;">
+            Learn IT Skills.<br>
+            <span style="color:#ffd54f;">Build Your Career.</span>
+          </h1>
+
+          <p class="fs-5 mt-3 text-light" style="max-width: 700px;">
+            Master Python, Django, Web Development, Data Science and Cyber Security
+            through practical projects and expert mentorship.
+          </p>
+
+          <div class="mt-4">
+            <a href="{% url 'course-list' %}" class="btn px-4 py-2 me-2 fw-semibold shadow"
+               style="background: linear-gradient(45deg,#0d6efd,#6610f2); border:none;">
+              Explore Courses
+            </a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-light px-4 py-2 fw-semibold">
+              Join Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="container py-5">
+      <div class="row g-4">
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="p-4 h-100 rounded text-center shadow-lg"
+               style="background: rgba(255,255,255,0.95); backdrop-filter: blur(6px); transition:0.3s;">
+            <i class="fa fa-user-graduate fa-3x mb-3" style="color:#6610f2;"></i>
+            <h5 class="fw-bold">Expert Trainers</h5>
+            <p class="text-muted mb-0">Learn from experienced IT professionals</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="p-4 h-100 rounded text-center shadow-lg"
+               style="background: rgba(255,255,255,0.95); backdrop-filter: blur(6px);">
+            <i class="fa fa-laptop-code fa-3x mb-3" style="color:#0d6efd;"></i>
+            <h5 class="fw-bold">Practical Learning</h5>
+            <p class="text-muted mb-0">Real-world projects & hands-on coding</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="p-4 h-100 rounded text-center shadow-lg"
+               style="background: rgba(255,255,255,0.95); backdrop-filter: blur(6px);">
+            <i class="fa fa-certificate fa-3x mb-3" style="color:#ff9800;"></i>
+            <h5 class="fw-bold">Certification</h5>
+            <p class="text-muted mb-0">Industry-recognized certificates</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="p-4 h-100 rounded text-center shadow-lg"
+               style="background: rgba(255,255,255,0.95); backdrop-filter: blur(6px);">
+            <i class="fa fa-briefcase fa-3x mb-3" style="color:#20c997;"></i>
+            <h5 class="fw-bold">Career Ready</h5>
+            <p class="text-muted mb-0">Interview & placement focused training</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6">
+          <img src="/static/assets/img/about.jpg"
+               class="img-fluid rounded-4 shadow-lg"
+               style="border:4px solid rgba(255,255,255,0.2);">
+        </div>
+
+        <div class="col-lg-6 text-white">
+          <h6 class="text-warning text-uppercase fw-semibold">About SkillCrest</h6>
+          <h1 class="fw-bold mb-3">A Complete IT Learning Platform</h1>
+          <p class="text-light">
+            SkillCrest is a Django-based Learning Management System designed
+            for students and trainers to manage courses, enrollments,
+            and learning progress efficiently.
+          </p>
+
+          <ul class="text-light" style="line-height:2;">
+            <li>✔ Student & Trainer Roles</li>
+            <li>✔ Secure Authentication</li>
+            <li>✔ Course Enrollment & Payments</li>
+            <li>✔ Project-Based Learning</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="container py-5 text-center text-white">
+      <h6 class="text-warning text-uppercase fw-semibold">Categories</h6>
+      <h1 class="fw-bold mb-4">IT Course Categories</h1>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 shadow fw-semibold"
+               style="background: linear-gradient(45deg,#ffffff,#f1f1f1); color:#000;">
+            Python & Django
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 shadow fw-semibold"
+               style="background: linear-gradient(45deg,#ffffff,#f1f1f1); color:#000;">
+            Web Development
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 shadow fw-semibold"
+               style="background: linear-gradient(45deg,#ffffff,#f1f1f1); color:#000;">
+            Data Science
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3 rounded-3 shadow fw-semibold"
+               style="background: linear-gradient(45deg,#ffffff,#f1f1f1); color:#000;">
+            Cyber Security
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIAL -->
+    <div class="container py-5 text-center text-white">
+      <h6 class="text-warning text-uppercase fw-semibold">Testimonials</h6>
+      <h1 class="fw-bold mb-4">What Students Say</h1>
+      <p class="lead fst-italic text-light" style="max-width:700px;margin:auto;">
+        “SkillCrest helped me master Django practically and boosted my confidence for interviews.”
+      </p>
+      <strong class="text-warning d-block mt-3">— Final Year Student</strong>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

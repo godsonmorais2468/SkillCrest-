@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Course Form | SkillCrest{% endblock %}
+
+{% block section %}
+
+<div class="container py-5" style="max-width: 820px;">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h3 style="font-weight:700; color:#2c3e50; margin-bottom:4px;">
+            Create / Edit Course
+        </h3>
+        <p style="color:#6c757d; font-size:14px; margin:0;">
+            Fill the details below to publish your course
+        </p>
+    </div>
+
+    <!-- Card -->
+    <div style="background:#ffffff;
+                border-radius:14px;
+                box-shadow:0 8px 24px rgba(0,0,0,0.06);
+                padding:32px;">
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Course Title -->
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:600; margin-bottom:6px; display:block;">Course Title</label>
+                {{ form.title }}
+            </div>
+
+            <!-- Category & Level -->
+            <div style="display:flex; gap:16px; margin-bottom:20px;">
+                <div style="flex:1;">
+                    <label style="font-weight:600; margin-bottom:6px; display:block;">Category</label>
+                    {{ form.category }}
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:600; margin-bottom:6px; display:block;">Level</label>
+                    {{ form.level }}
+                </div>
+            </div>
+
+            <!-- Duration -->
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:600; margin-bottom:6px; display:block;">Course Duration</label>
+                {{ form.duration }}
+            </div>
+
+            <!-- Video URL -->
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:600; margin-bottom:6px; display:block;">Preview Video URL</label>
+                {{ form.video_url }}
+                <small style="color:#6c757d; font-size:12px;">Optional — Add a YouTube/Vimeo link</small>
+            </div>
+
+            <!-- Short Description -->
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:600; margin-bottom:6px; display:block;">Short Description</label>
+                {{ form.description }}
+            </div>
+
+            <!-- Detailed Description -->
+            <div style="margin-bottom:24px;">
+                <label style="font-weight:600; margin-bottom:6px; display:block;">Detailed Description</label>
+                {{ form.detailed_description }}
+            </div>
+
+            <!-- Active Switch -->
+            <div class="form-check form-switch mb-4">
+                {{ form.is_active }}
+                <label class="ms-2" style="font-weight:600;">Course is Active</label>
+            </div>
+
+            <!-- Buttons -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                <a href="{% url 'course-list' %}"
+                   style="text-decoration:none;
+                          padding:8px 18px;
+                          border-radius:8px;
+                          border:1px solid #dee2e6;
+                          color:#495057;
+                          font-weight:500;">
+                    Cancel
+                </a>
+
+                <button type="submit"
+                        style="background:#0d6efd;
+                               color:white;
+                               border:none;
+                               padding:10px 22px;
+                               border-radius:8px;
+                               font-weight:600;
+                               box-shadow:0 4px 12px rgba(13,110,253,0.25);">
+                    Save Course
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
