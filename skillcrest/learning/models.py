@@ -1,5 +1,6 @@
 from django.db import models
 from courses.models import Course
+import re
 
 
 class Lesson(models.Model):
@@ -14,12 +15,22 @@ class Lesson(models.Model):
     def __str__(self):
         return f"{self.course.title} - {self.title}"
 
-    # 🔥 Convert normal YouTube link → embed link
+    # 🔥 SAFE YouTube Embed URL Generator
     def get_embed_url(self):
-        url = self.youtube_url
+        url = self.youtube_url.strip()
 
-        if "watch?v=" in url:
-            return url.replace("watch?v=", "embed/")
-        elif "youtu.be/" in url:
-            return url.replace("youtu.be/", "www.youtube.com/embed/")
-        return url
+        # Extract video ID from any YouTube format
+        patterns = [
+            r"youtu\.be/([^?&]+)",
+            r"youtube\.com/watch\?v=([^?&]+)",
+            r"youtube\.com/embed/([^?&]+)",
+            r"youtube\.com/shorts/([^?&]+)"
+        ]
+
+        for pattern in patterns:
+            match = re.search(pattern, url)
+            if match:
+                video_id = match.group(1)
+                return f"https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1"
+
+        return ""
